@@ -1,4 +1,4 @@
-package fr.management.routes
+package fr.find.routes
 
 import fr.management.dataclass.User
 import io.ktor.application.Application
