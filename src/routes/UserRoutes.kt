@@ -1,6 +1,6 @@
 package fr.find.routes
 
-import fr.management.dataclass.User
+import fr.find.dataclass.User
 import io.ktor.application.Application
 import io.ktor.routing.*
 

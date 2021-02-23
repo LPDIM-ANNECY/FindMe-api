@@ -1,16 +1,13 @@
 package fr.find.dataclass
 
-import kotlinx.serialization.Serializable
-import java.util.*
+import java.time.LocalDate
 
-
-@Serializable
 data class User(val id: Int,
                 val email: String,
                 val password: String,
-                val created_at: Date,
-                val updated_at: Date,
-                val local: String,
+                val created_at: LocalDate,
+                val updated_at: LocalDate?,
+                val locale: String,
                 val enable: Boolean,
                 val level: String,
                 val total_distance: Float,

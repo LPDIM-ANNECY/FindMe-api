@@ -1,8 +1,5 @@
 package fr.find.dataclass
 
-import kotlinx.serialization.Serializable
-
-@Serializable
 data class Place(val id: Int,
                 val name: String,
                 val latitude: Float,
