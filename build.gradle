@@ -11,7 +11,7 @@ buildscript {
 apply plugin: 'kotlin'
 apply plugin: 'application'
 
-group 'fr.management-patrimony-api'
+group 'fr.find-me-api'
 version '0.0.1'
 mainClassName = "io.ktor.server.netty.EngineMain"
 
@@ -25,7 +25,6 @@ sourceSets {
 repositories {
     mavenLocal()
     jcenter()
-    maven { url 'https://kotlin.bintray.com/ktor' }
 }
 
 dependencies {
@@ -33,7 +32,7 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
     implementation "io.ktor:ktor-server-netty:$ktor_version"
     implementation "ch.qos.logback:logback-classic:$logback_version"
-    implementation "io.ktor:ktor-server-core:$ktor_version"
+    //implementation "io.ktor:ktor-server-core:$ktor_version"
     implementation "io.ktor:ktor-serialization:$ktor_version"
 
     //Test implementation
