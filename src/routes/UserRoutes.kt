@@ -1,15 +1,12 @@
 package fr.find.routes
 
-import fr.find.dataclass.User
 import io.ktor.application.Application
 import io.ktor.routing.*
 
 import io.ktor.http.HttpStatusCode
 import io.ktor.application.call
-import io.ktor.request.receive
 import io.ktor.response.respond
 import io.ktor.response.respondText
-import io.ktor.routing.*
 
 
 fun Application.registerOrderRoutes() {
