@@ -18,7 +18,7 @@ fun Route.PlacesRoute(){
         get("/"){
             call.respond(place_repository.getAll())
         }
-        get("/{id}"){
+        get("users/{id}"){
             val id = call.parameters["id"]
 
             if (id != null)
