@@ -1,5 +1,7 @@
 package fr.find.routes
 
+import fr.find.repository.PlaceRepository
+import fr.find.repository.UserFindmeRepository
 import io.ktor.application.Application
 import io.ktor.routing.*
 
@@ -9,48 +11,23 @@ import io.ktor.response.respond
 import io.ktor.response.respondText
 
 
-fun Application.registerOrderRoutes() {
+val user_repository = UserFindmeRepository()
+
+fun Application.registerUserRoutes() {
     routing {
-        listUsersRoute()
         getUserRoute()
-        getUserRoutePlaces()
-        postUserRoute()
     }
 }
 
-
-fun Route.listUsersRoute() {
-    get("/users") {
-        call.respond("SELECT * FROM User_findme")
-    }
-}
 fun Route.getUserRoute() {
-    get("/user/{id}") {
-        val id = call.parameters["id"] ?: return@get call.respondText("Bad Request", status = HttpStatusCode.BadRequest)
-        val user =  "SELECT * FROM User_findme WHERE id =$id" ?: return@get call.respondText(
-            "Not Found",
-            status = HttpStatusCode.NotFound
-        )
-        call.respond(user)
-    }
-}
+    get("users/{id}"){
+        val id = call.parameters["id"]
 
-fun Route.getUserRoutePlaces() {
-    get("/user/{id}/places") {
-           val id = call.parameters["id"] ?: return@get call.respondText("Bad Request", status = HttpStatusCode.BadRequest)
-           val allPlaces = "SELECT * FROM Place p JOIN User_itinerary u ON u.place_id = p.id  WHERE u.user_id =$id"
-               ?: return@get call.respondText(
-               "Not Found",
-               status = HttpStatusCode.NotFound
-           )
-           call.respond(allPlaces)
-    }
-}
-
-fun Route.postUserRoute() {
-    post("/user/add/{id}")  {
-     /* val user = call.receive<User>()
-        dbData.add(user)
-        call.respondText("User stored correctly", status = HttpStatusCode.Accepted)*/
+        if (id != null) {
+            val response = user_repository.getUserById(id.toInt())
+            call.respond(if (response.isNullOrEmpty()) HttpStatusCode.NotFound else response)
+        }
+        else
+            call.respondText("id is null")
     }
 }

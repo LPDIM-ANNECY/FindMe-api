@@ -6,6 +6,7 @@ import fr.find.entity.User_findme
 import fr.find.entity.User_itinerary
 import fr.find.repository.UserFindmeRepository
 import fr.find.routes.registerPlaceRoutes
+import fr.find.routes.registerUserRoutes
 import io.ktor.application.*
 import io.ktor.response.*
 import io.ktor.routing.*
@@ -57,6 +58,7 @@ fun Application.myapp(testing: Boolean = false) {
 
     install(Routing){
         registerPlaceRoutes()
+        registerUserRoutes()
         route("/users"){
             get("/"){
                 call.respond(user_findme_repository.getAll())
