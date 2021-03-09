@@ -46,7 +46,6 @@ fun Application.myapp(testing: Boolean = false) {
             it[Place.longitude] = 848.87f
             it[Place.difficulty] = 2
             it[Place.radius_type] = "50"
-            it[Place.active] = true
         }
 
         User_itinerary.insert {

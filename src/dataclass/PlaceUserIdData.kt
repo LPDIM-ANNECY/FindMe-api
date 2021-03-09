@@ -7,5 +7,4 @@ data class PlaceUserIdData(
                      val longitude: Float?,
                      val difficulty: Int?,
                      val radius_type: String?,
-                     val active: Boolean?,
                      val visited: Boolean?)

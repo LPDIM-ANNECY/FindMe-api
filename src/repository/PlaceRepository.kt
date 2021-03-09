@@ -27,8 +27,7 @@ class PlaceRepository {
                         latitude = it[Place.latitude],
                         longitude = it[Place.longitude],
                         difficulty = it[Place.difficulty],
-                        radius_type = it[Place.radius_type],
-                        active = it[Place.active]
+                        radius_type = it[Place.radius_type]
                     )
                 )
             }
@@ -44,9 +43,9 @@ class PlaceRepository {
                 selectJoin,
                 JoinType.LEFT,
                 additionalConstraint = { Place.id eq selectJoin[User_itinerary.place_id] })
-                .slice(Place.id, Place.name, Place.latitude, Place.longitude, Place.difficulty, Place.radius_type, Place.active, SqlExpressionBuilder.case()
+                .slice(Place.id, Place.name, Place.latitude, Place.longitude, Place.difficulty, Place.radius_type, SqlExpressionBuilder.case()
                     .When(selectJoin[User_findme.id].isNotNull(), Op.TRUE).Else (Op.FALSE).alias("visited"))
-                .select { Place.active eq true }
+                .selectAll()
                 .map{
                 places.add(
                     PlaceUserIdData(
@@ -56,7 +55,6 @@ class PlaceRepository {
                         longitude = it[Place.longitude],
                         difficulty = it[Place.difficulty],
                         radius_type = it[Place.radius_type],
-                        active = it[Place.active],
                         visited = it[SqlExpressionBuilder.case()
                             .When(selectJoin[User_findme.id].isNotNull(), Op.TRUE).Else (Op.FALSE).alias("visited")]
                     )

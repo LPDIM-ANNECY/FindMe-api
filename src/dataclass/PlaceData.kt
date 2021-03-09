@@ -5,5 +5,4 @@ data class PlaceData(val id: Int?,
                      val latitude: Float?,
                      val longitude: Float?,
                      val difficulty: Int?,
-                     val radius_type: String?,
-                     val active: Boolean?)
+                     val radius_type: String?)
