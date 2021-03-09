@@ -21,7 +21,7 @@ import org.jetbrains.exposed.sql.transactions.transaction
 @kotlin.jvm.JvmOverloads
 fun Application.myapp(testing: Boolean = false) {
 
-    Database.connect("jdbc:postgresql://127.0.0.1:5432/postgres", driver = "org.postgresql.Driver", user ="postgres", password = "test200")
+    Database.connect("jdbc:postgresql://127.0.0.1:5432/postgres", driver = "org.postgresql.Driver", user ="postgres", password = "442442")
     val user_findme_repository = UserFindmeRepository()
 
     transaction {

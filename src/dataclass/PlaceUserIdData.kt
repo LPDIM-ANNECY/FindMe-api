@@ -8,4 +8,4 @@ data class PlaceUserIdData(
                      val difficulty: Int?,
                      val radius_type: String?,
                      val active: Boolean?,
-                     val user_id: Int?)
+                     val visited: Boolean?)
