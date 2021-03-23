@@ -5,6 +5,8 @@ package fr.find.repository
 
 import fr.find.dataclass.PlaceData
 import fr.find.dataclass.PlaceUserIdData
+import fr.find.dataclass.PlaceWithCategory
+import fr.find.entity.Category
 import fr.find.entity.Place
 import fr.find.entity.User_findme
 import fr.find.entity.User_itinerary
@@ -60,6 +62,29 @@ class PlaceRepository {
                     )
                 )
             }
+        }
+        return places
+    }
+
+    fun getPlaceWithCategory(name: String): ArrayList<PlaceWithCategory>{
+        val places : ArrayList<PlaceWithCategory> = arrayListOf()
+        transaction {
+          (Place innerJoin Category)
+              .select { Category.name eq name }
+              .map {
+                  places.add(
+                      PlaceWithCategory(
+                          id = it[Place.id],
+                          name = it[Place.name],
+                          latitude = it[Place.latitude],
+                          longitude = it[Place.longitude],
+                          difficulty = it[Place.difficulty],
+                          radius_type = it[Place.radius_type],
+                          category_id = it[Place.category_id],
+                          category_name = it[Category.name]
+                      )
+                  )
+              }
         }
         return places
     }

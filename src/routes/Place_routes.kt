@@ -26,5 +26,15 @@ fun Route.PlacesRoute(){
             else
                 call.respondText("id is null")
         }
+        get("/category/{name}"){
+            val name: String? = call.parameters["name"]
+
+            println(name)
+
+            if (name != null)
+                call.respond(place_repository.getPlaceWithCategory(name.toString()))
+            else
+                call.respondText("id is null")
+        }
     }
 }
