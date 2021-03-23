@@ -63,3 +63,9 @@ shadowJar {
     classifier = null
     version = null
 }
+
+
+// FOR HEROKU
+tasks.create("stage") {
+    dependsOn("installDist")
+}

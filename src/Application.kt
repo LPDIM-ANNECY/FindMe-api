@@ -18,7 +18,7 @@ import io.ktor.features.ContentNegotiation
 import io.ktor.jackson.*
 import org.jetbrains.exposed.sql.transactions.transaction
 
-
+fun main(args: Array<String>): Unit = io.ktor.server.netty.EngineMain.main(args)
 
 @kotlin.jvm.JvmOverloads
 fun Application.myapp(testing: Boolean = false) {
@@ -81,12 +81,4 @@ fun Application.myapp(testing: Boolean = false) {
     }
 }
 
-fun main(args: Array<String>) {
-    embeddedServer(
-        Netty,
-        watchPaths = listOf("fr.find"),
-        module = Application::myapp,
-        port = 8081
-    ).start(wait = true)
-}
 

@@ -1,0 +1,1 @@
+web: ./build/install/find-me-api/bin/find-me-api
