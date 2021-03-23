@@ -51,21 +51,27 @@ dependencies {
 }
 
 // tell the jar which class to startup in.
+/*
 jar {
     zip64 = true
     manifest {
         attributes 'Main-Class': "$mainClassName"
     }
 }
-
+/*
 shadowJar {
     baseName = 'findme-server'
     classifier = null
     version = null
 }
-
+*/
 
 // FOR HEROKU
+jar {
+    baseName = 'find-me-api'
+    version = '1.0'
+}
+/*
 tasks.create("stage") {
     dependsOn("installDist")
-}
+}*/
