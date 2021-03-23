@@ -1,1 +1,1 @@
-web: ./build/install/find-me-api/bin/find-me-api
+web:    java -jar target/find-me-api.jar
