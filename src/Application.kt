@@ -17,13 +17,14 @@ import org.jetbrains.exposed.sql.*
 import io.ktor.features.ContentNegotiation
 import io.ktor.jackson.*
 import org.jetbrains.exposed.sql.transactions.transaction
+import sun.nio.ch.IOUtil
 
 fun main(args: Array<String>): Unit = io.ktor.server.netty.EngineMain.main(args)
 
 @kotlin.jvm.JvmOverloads
 fun Application.myapp(testing: Boolean = false) {
 
-    Database.connect("jdbc:postgresql://127.0.0.1:5432/postgres", driver = "org.postgresql.Driver", user ="postgres", password = "442442")
+    Database.connect("jdbc:postgresql://localhost:5432/postgres", driver = "org.postgresql.Driver",user ="postgres", password = "442442")
     val user_findme_repository = UserFindmeRepository()
 
     transaction {
