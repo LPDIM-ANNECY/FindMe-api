@@ -6,18 +6,16 @@ import fr.find.entity.Place
 import fr.find.entity.User_findme
 import fr.find.entity.User_itinerary
 import fr.find.repository.UserFindmeRepository
+import fr.find.routes.registerCategoryRoutes
 import fr.find.routes.registerPlaceRoutes
 import fr.find.routes.registerUserRoutes
 import io.ktor.application.*
 import io.ktor.response.*
 import io.ktor.routing.*
-import io.ktor.server.engine.*
-import io.ktor.server.netty.*
 import org.jetbrains.exposed.sql.*
 import io.ktor.features.ContentNegotiation
 import io.ktor.jackson.*
 import org.jetbrains.exposed.sql.transactions.transaction
-import sun.nio.ch.IOUtil
 
 fun main(args: Array<String>): Unit = io.ktor.server.netty.EngineMain.main(args)
 
@@ -68,6 +66,7 @@ fun Application.myapp(testing: Boolean = false) {
     install(Routing){
         registerPlaceRoutes()
         registerUserRoutes()
+        registerCategoryRoutes()
         route("/users"){
             get("/"){
                 call.respond(user_findme_repository.getAll())
