@@ -24,8 +24,8 @@ fun Route.getUserRoute() {
         get("/"){
             call.respond(user_repository.getAll())
         }
-        get("users/{id}"){
-            val id = call.parameters["id"]
+        get("/{id}"){
+            val id: Int? = call.parameters["id"]?.toInt()
 
             if (id != null) {
                 val response = user_repository.getUserById(id.toInt())

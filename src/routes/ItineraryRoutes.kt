@@ -20,7 +20,7 @@ fun Route.ItinerariesRoute() {
         }
 
         get("/{id}"){
-            val id = call.parameters["id"]
+            val id: Int? = call.parameters["id"]?.toInt()
 
             if (id != null)
                 call.respond(itinerary_repository.getItineraryPlaces(id.toInt()))

@@ -34,6 +34,8 @@ class UserFindmeRepository {
         return users
     }
 
+
+    //TODO refactor single user
     fun getUserById(id: Int): ArrayList<UserData>{
         val user : ArrayList<UserData> = arrayListOf()
         transaction {

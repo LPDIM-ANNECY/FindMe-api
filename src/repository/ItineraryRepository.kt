@@ -43,7 +43,9 @@ class ItineraryRepository {
                             latitude = it[Place.latitude],
                             longitude = it[Place.longitude],
                             difficulty = it[Place.difficulty],
-                            radius_type = it[Place.radius_type]
+                            radius_type = it[Place.radius_type],
+                            active = it[Place.active],
+                            description = it[Place.description]
                         )
                     )
                 }

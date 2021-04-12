@@ -11,5 +11,6 @@ object Itinerary: Table() {
     val duration = float("duration")
     val length = float("length")
     val active = bool("active")
+    val description = text("description")
     override val primaryKey = PrimaryKey(Itinerary.id, name = "PK_Itinerary_Id")
 }

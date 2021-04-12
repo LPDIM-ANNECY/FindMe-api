@@ -1,11 +1,8 @@
 package fr.find
 
-import fr.find.entity.Itinerary
 import fr.find.entity.Itinerary_place
-import fr.find.repository.UserFindmeRepository
 import fr.find.routes.*
 import io.ktor.application.*
-import io.ktor.response.*
 import io.ktor.routing.*
 import org.jetbrains.exposed.sql.*
 import io.ktor.features.ContentNegotiation
@@ -20,8 +17,8 @@ fun Application.myapp(testing: Boolean = false) {
     Database.connect("jdbc:postgresql://localhost:5432/postgres", driver = "org.postgresql.Driver",user ="postgres", password = "442442")
 
     transaction {
-        SchemaUtils.create(Itinerary_place)
-        /*SchemaUtils.create(User_findme)
+        /*SchemaUtils.create(Itinerary_place)
+        SchemaUtils.create(User_findme)
         SchemaUtils.create(Place)
         SchemaUtils.create(User_itinerary)
         SchemaUtils.create(Category)

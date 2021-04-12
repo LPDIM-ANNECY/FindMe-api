@@ -11,10 +11,9 @@ import fr.find.entity.Place
 import fr.find.entity.User_findme
 import fr.find.entity.User_itinerary
 import org.jetbrains.exposed.sql.*
+import org.jetbrains.exposed.sql.SqlExpressionBuilder.eq
 import org.jetbrains.exposed.sql.SqlExpressionBuilder.isNotNull
-import org.jetbrains.exposed.sql.transactions.TransactionManager
 import org.jetbrains.exposed.sql.transactions.transaction
-import java.sql.ResultSet
 
 class PlaceRepository {
 
@@ -29,13 +28,37 @@ class PlaceRepository {
                         latitude = it[Place.latitude],
                         longitude = it[Place.longitude],
                         difficulty = it[Place.difficulty],
-                        radius_type = it[Place.radius_type]
+                        radius_type = it[Place.radius_type],
+                        active = it[Place.active],
+                        description = it[Place.description]
                     )
                 )
             }
         }
         return places
     }
+
+    fun getPlaceById(id: Int): ArrayList<PlaceData> {
+        val place : ArrayList<PlaceData> = arrayListOf()
+        transaction {
+            Place.select { Place.id eq id }.map {
+                place.add(
+                    PlaceData(
+                        id = it[Place.id],
+                        name = it[Place.name],
+                        latitude = it[Place.latitude],
+                        longitude = it[Place.longitude],
+                        difficulty = it[Place.difficulty],
+                        radius_type = it[Place.radius_type],
+                        active = it[Place.active],
+                        description = it[Place.description]
+                    )
+                )
+            }
+        }
+        return place
+    }
+
 
     fun getAllPlaceAndUserVisited(id: Int): ArrayList<PlaceUserIdData> {
         val places : ArrayList<PlaceUserIdData> = arrayListOf()
@@ -45,7 +68,7 @@ class PlaceRepository {
                 selectJoin,
                 JoinType.LEFT,
                 additionalConstraint = { Place.id eq selectJoin[User_itinerary.place_id] })
-                .slice(Place.id, Place.name, Place.latitude, Place.longitude, Place.difficulty, Place.radius_type, SqlExpressionBuilder.case()
+                .slice(Place.id, Place.name, Place.latitude, Place.longitude, Place.difficulty, Place.radius_type, Place.active, Place.description, SqlExpressionBuilder.case()
                     .When(selectJoin[User_findme.id].isNotNull(), Op.TRUE).Else (Op.FALSE).alias("visited"))
                 .selectAll()
                 .map{
@@ -57,6 +80,8 @@ class PlaceRepository {
                         longitude = it[Place.longitude],
                         difficulty = it[Place.difficulty],
                         radius_type = it[Place.radius_type],
+                        active = it[Place.active],
+                        description = it[Place.description],
                         visited = it[SqlExpressionBuilder.case()
                             .When(selectJoin[User_findme.id].isNotNull(), Op.TRUE).Else (Op.FALSE).alias("visited")]
                     )
@@ -80,6 +105,8 @@ class PlaceRepository {
                           longitude = it[Place.longitude],
                           difficulty = it[Place.difficulty],
                           radius_type = it[Place.radius_type],
+                          active = it[Place.active],
+                          description = it[Place.description],
                           category_id = it[Place.category_id],
                           category_name = it[Category.name]
                       )

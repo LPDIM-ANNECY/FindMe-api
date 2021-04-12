@@ -18,11 +18,19 @@ fun Route.PlacesRoute(){
         get("/"){
             call.respond(place_repository.getAll())
         }
-        get("users/{id}"){
-            val id = call.parameters["id"]
+        get("/{id}"){
+            val id: Int? = call.parameters["id"]?.toInt()
 
             if (id != null)
-                call.respond(place_repository.getAllPlaceAndUserVisited(id.toInt()))
+                call.respond(place_repository.getPlaceById(id))
+            else
+                call.respondText("id is null")
+        }
+        get("users/{id}"){
+            val id: Int? = call.parameters["id"]?.toInt()
+
+            if (id != null)
+                call.respond(place_repository.getAllPlaceAndUserVisited(id))
             else
                 call.respondText("id is null")
         }
