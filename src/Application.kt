@@ -26,13 +26,13 @@ fun Application.myapp(testing: Boolean = false) {
     val user_findme_repository = UserFindmeRepository()
 
     transaction {
-        SchemaUtils.create(User_findme)
+        /*SchemaUtils.create(User_findme)
         SchemaUtils.create(Place)
         SchemaUtils.create(User_itinerary)
         SchemaUtils.create(Category)
 
 
-        /*User_findme.insert {
+        User_findme.insert {
             it[User_findme.email] = "test@gmail.com"
             it[User_findme.password] = "test"
             it[User_findme.locale] = "France"

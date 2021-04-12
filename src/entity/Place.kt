@@ -8,7 +8,7 @@ object Place: Table() {
     val latitude = float("latitude")
     val longitude = float("longitude")
     val difficulty  = integer("difficulty")
-    val radius_type = varchar("radius_type", 10)
+    val radius_type = float("radius_type")
     val category_id = reference("category_id", Category.id)
     override val primaryKey = PrimaryKey(id, name = "PK_Place_Id")
 }

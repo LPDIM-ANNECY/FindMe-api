@@ -5,6 +5,6 @@ data class PlaceWithCategory(val id: Int?,
                              val latitude: Float?,
                              val longitude: Float?,
                              val difficulty: Int?,
-                             val radius_type: String?,
+                             val radius_type: Float?,
                              val category_id: Int?,
                              val category_name: String?)
