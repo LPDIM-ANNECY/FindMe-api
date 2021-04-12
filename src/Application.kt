@@ -1,14 +1,9 @@
 package fr.find
 
-
-import fr.find.entity.Category
-import fr.find.entity.Place
-import fr.find.entity.User_findme
-import fr.find.entity.User_itinerary
+import fr.find.entity.Itinerary
+import fr.find.entity.Itinerary_place
 import fr.find.repository.UserFindmeRepository
-import fr.find.routes.registerCategoryRoutes
-import fr.find.routes.registerPlaceRoutes
-import fr.find.routes.registerUserRoutes
+import fr.find.routes.*
 import io.ktor.application.*
 import io.ktor.response.*
 import io.ktor.routing.*
@@ -23,13 +18,14 @@ fun main(args: Array<String>): Unit = io.ktor.server.netty.EngineMain.main(args)
 fun Application.myapp(testing: Boolean = false) {
 
     Database.connect("jdbc:postgresql://localhost:5432/postgres", driver = "org.postgresql.Driver",user ="postgres", password = "442442")
-    val user_findme_repository = UserFindmeRepository()
 
     transaction {
+        SchemaUtils.create(Itinerary_place)
         /*SchemaUtils.create(User_findme)
         SchemaUtils.create(Place)
         SchemaUtils.create(User_itinerary)
         SchemaUtils.create(Category)
+        SchemaUtils.create(Itinerary)
 
 
         User_findme.insert {
@@ -66,12 +62,8 @@ fun Application.myapp(testing: Boolean = false) {
     install(Routing){
         registerPlaceRoutes()
         registerUserRoutes()
-        registerCategoryRoutes()
-        route("/users"){
-            get("/"){
-                call.respond(user_findme_repository.getAll())
-            }
-        }
+        registerCategoriesRoutes()
+        registerItineraryRoutes()
     }
 
     install(ContentNegotiation){

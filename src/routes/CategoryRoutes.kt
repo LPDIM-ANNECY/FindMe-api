@@ -7,13 +7,13 @@ import io.ktor.routing.*
 
 val category_repository = CategoryRepository()
 
-fun Application.registerCategoryRoutes() {
+fun Application.registerCategoriesRoutes() {
     routing {
-        CategoryRoute()
+        CategoriesRoute()
     }
 }
 
-fun Route.CategoryRoute(){
+fun Route.CategoriesRoute(){
     route("/categories"){
         get("/"){
             call.respond(category_repository.getAll())

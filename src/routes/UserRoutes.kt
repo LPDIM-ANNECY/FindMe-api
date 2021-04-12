@@ -20,14 +20,19 @@ fun Application.registerUserRoutes() {
 }
 
 fun Route.getUserRoute() {
-    get("users/{id}"){
-        val id = call.parameters["id"]
-
-        if (id != null) {
-            val response = user_repository.getUserById(id.toInt())
-            call.respond(if (response.isNullOrEmpty()) HttpStatusCode.NotFound else response)
+    route("/users"){
+        get("/"){
+            call.respond(user_repository.getAll())
         }
-        else
-            call.respondText("id is null")
+        get("users/{id}"){
+            val id = call.parameters["id"]
+
+            if (id != null) {
+                val response = user_repository.getUserById(id.toInt())
+                call.respond(if (response.isNullOrEmpty()) HttpStatusCode.NotFound else response)
+            }
+            else
+                call.respondText("id is null")
+        }
     }
 }
