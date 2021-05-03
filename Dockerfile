@@ -17,7 +17,8 @@ WORKDIR /src
 
 # Executing our previously configured shadowJar
 # RUN ./gradlew test
-RUN gradlew --no-daemon shadowJar
+RUN chmod ugo+x gradlew
+RUN ./gradlew --no-daemon shadowJar
 
 
 # ----------------- Run stage --------------------
