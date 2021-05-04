@@ -72,7 +72,6 @@ ALTER TABLE itinerary ADD CONSTRAINT itinerary_id_unique UNIQUE (id);
 INSERT INTO category (name) VALUES ('RELIGIEUX');
 INSERT INTO category (name) VALUES ('PONTS');
 INSERT INTO category (name) VALUES ('MARCHÉS');
-INSERT INTO category (name) VALUES ('NOCTURNES');
 
 
 INSERT INTO user_findme (created_at, email, "enable", "level", locale, "password", picture, pseudo, total_distance, updated_at)

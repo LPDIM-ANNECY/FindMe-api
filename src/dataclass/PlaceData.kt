@@ -1,8 +1,5 @@
 package fr.find.dataclass
 
-import io.ktor.http.*
-import java.awt.peer.TextAreaPeer
-
 data class PlaceData(val id: Int?,
                      val name: String?,
                      val latitude: Float?,
