@@ -61,6 +61,7 @@ fun Application.myapp(testing: Boolean = false) {
         registerUserRoutes()
         registerCategoriesRoutes()
         registerItineraryRoutes()
+        registerUserItineraryRoutes()
     }
 
     install(ContentNegotiation){
