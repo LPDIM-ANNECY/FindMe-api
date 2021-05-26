@@ -70,7 +70,7 @@ class PlaceRepository {
                 selectJoin,
                 JoinType.LEFT,
                 additionalConstraint = { Place.id eq selectJoin[User_itinerary.place_id] })
-                .slice(Place.id, Place.name, Place.latitude, Place.longitude, Place.difficulty, Place.radius_type, Place.active, Place.description, Place.category_id, SqlExpressionBuilder.case()
+                .slice(Place.id, Place.name, Place.latitude, Place.longitude, Place.difficulty, Place.radius_type, Place.active, Place.description, Place.category_id, Place.picture, SqlExpressionBuilder.case()
                     .When(selectJoin[User_findme.id].isNotNull(), Op.TRUE).Else (Op.FALSE).alias("visited"))
                 .selectAll()
                 .map{
