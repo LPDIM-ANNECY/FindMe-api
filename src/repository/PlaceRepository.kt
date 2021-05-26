@@ -30,7 +30,8 @@ class PlaceRepository {
                         difficulty = it[Place.difficulty],
                         radius_type = it[Place.radius_type],
                         active = it[Place.active],
-                        description = it[Place.description]
+                        description = it[Place.description],
+                        picture = it[Place.picture]
                     )
                 )
             }
@@ -51,7 +52,8 @@ class PlaceRepository {
                         difficulty = it[Place.difficulty],
                         radius_type = it[Place.radius_type],
                         active = it[Place.active],
-                        description = it[Place.description]
+                        description = it[Place.description],
+                        picture = it[Place.picture]
                     )
                 )
             }
@@ -82,6 +84,7 @@ class PlaceRepository {
                         radius_type = it[Place.radius_type],
                         active = it[Place.active],
                         description = it[Place.description],
+                        picture = it[Place.picture],
                         category_id = it[Place.category_id],
                         visited = it[SqlExpressionBuilder.case()
                             .When(selectJoin[User_findme.id].isNotNull(), Op.TRUE).Else (Op.FALSE).alias("visited")]
@@ -108,6 +111,7 @@ class PlaceRepository {
                           radius_type = it[Place.radius_type],
                           active = it[Place.active],
                           description = it[Place.description],
+                          picture = it[Place.picture],
                           category_id = it[Place.category_id],
                           category_name = it[Category.name]
                       )

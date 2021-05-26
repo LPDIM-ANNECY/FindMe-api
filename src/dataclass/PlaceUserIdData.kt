@@ -9,5 +9,6 @@ data class PlaceUserIdData(
     val radius_type: Int,
     val active: Boolean?,
     val description: String?,
+    val picture: String,
     val category_id: Int?,
     val visited: Boolean?)

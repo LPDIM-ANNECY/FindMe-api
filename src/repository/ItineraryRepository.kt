@@ -45,7 +45,8 @@ class ItineraryRepository {
                             difficulty = it[Place.difficulty],
                             radius_type = it[Place.radius_type],
                             active = it[Place.active],
-                            description = it[Place.description]
+                            description = it[Place.description],
+                            picture = it[Place.picture]
                         )
                     )
                 }

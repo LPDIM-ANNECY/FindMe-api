@@ -11,6 +11,7 @@ object Place: Table() {
     val radius_type = integer("radius_type")
     val active = bool("active")
     val description = text("description")
+    val picture = text("picture")
     val category_id = reference("category_id", Category.id)
     override val primaryKey = PrimaryKey(id, name = "PK_Place_Id")
 }
